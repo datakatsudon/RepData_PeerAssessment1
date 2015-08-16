@@ -12,7 +12,7 @@ data <- read.csv("activity.csv")
 
 # What is the mean total number of steps taken per day?
 Ignoring NA values, calculate the total number of steps taken per day, and create a histogram using:
-```{r, echo=TRUE}
+```{r, echo=TRUE, fig.height=8, fig.width=8}
 datasep <- split(data, data$date)
 totalpd <- sapply(datasep, function(x) sum(x[,"steps"], na.rm=TRUE))
 hist(totalpd, col="pink", main="Histogram of Total Number of Steps Recorded Per Day",
@@ -35,7 +35,7 @@ The median total number of steps is: 10395
 
 # What is the average daily activity pattern?
 Create a plot of the average number of steps over all days taken per five minute interval using:
-```{r, echo=TRUE}
+```{r, echo=TRUE, fig.height=8, fig.width=8}
 intervalsep <- split(data, data$interval)
 averagepi <- lapply (intervalsep, function(y) mean(y[,"steps"], na.rm=TRUE))
 ##averagepi returns a list of means number of steps for each interval
@@ -79,7 +79,7 @@ newdatafinal <- ldply(newdatadraft)
 ```
 
 With the new data values, calculate the total number of steps taken per day, and create a histogram using:
-```{r, echo=TRUE}
+```{r, echo=TRUE, fig.height=8, fig.width=8}
 newdatasep <- split(newdatafinal, newdatafinal$date)
 newtotalpd <- sapply(newdatasep, function(z) sum(z[,"steps"]))
 hist(newtotalpd, col="orange", main="New Histogram of Total Number of Steps Recorded Per Day",
@@ -111,7 +111,7 @@ finalintervalframe <- cbind(newintervalframe, dayofweek)
 ```
 
 Create a plot of the average number of steps taken in the 5 minute intervals, averaged across all weekday days and weekend days using:
-```{r, echo=TRUE}
+```{r, echo=TRUE, fig.height=10, fig.width=8}
 weekdayorweekend <- ifelse(finalintervalframe$dayofweek %in% c("Mon", "Tue", "Wed", "Thu",
                                                                  "Fri"), "weekday", "weekend")
 finalintervalframe$dayofweek<- weekdayorweekend
